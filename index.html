@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Galaxy Fashion BD - Premium Shirt Combo</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- ================= HEADER SECTION START ================= -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#top">GALAXY<span>FASHION</span>BD</a>
+
+      <nav class="header-trust" aria-label="Trust highlights">
+        <span><img src="assets/icon-quality.svg" alt="" /> Premium Quality</span>
+        <span><img src="assets/icon-delivery.svg" alt="" /> Cash on Delivery</span>
+        <span><img src="assets/icon-return.svg" alt="" /> Easy Returns</span>
+      </nav>
+
+      <a class="header-btn" href="#order"><img src="assets/icon-lock.svg" alt="" /> Order Now</a>
+    </div>
+  </header>
+  <!-- ================= HEADER SECTION END ================= -->
+
+  <main id="top">
+    <!-- ================= HERO SLIDER SECTION START =================
+      NOTE: Hero section is full width. It is intentionally outside 1140px container.
+      Desktop image and mobile image are separate using <picture>.
+      Replace hero-desktop/mobile SVG files with your real product banner images.
+    =============================================================== -->
+    <section class="hero-slider" aria-label="Product hero slider">
+      <button class="slider-arrow prev" type="button" aria-label="Previous slide">‹</button>
+
+      <div class="hero-track">
+        <article class="hero-slide active">
+          <picture>
+            <source media="(max-width: 767px)" srcset="assets/hero-1-mobile.svg" />
+            <img src="assets/hero-1.svg" alt="Galaxy Fashion BD shirt combo banner 1" />
+          </picture>
+        </article>
+        <article class="hero-slide">
+          <picture>
+            <source media="(max-width: 767px)" srcset="assets/hero-2-mobile.svg" />
+            <img src="assets/hero-2.svg" alt="Galaxy Fashion BD shirt combo banner 2" />
+          </picture>
+        </article>
+        <article class="hero-slide">
+          <picture>
+            <source media="(max-width: 767px)" srcset="assets/hero-3-mobile.svg" />
+            <img src="assets/hero-3.svg" alt="Galaxy Fashion BD shirt combo banner 3" />
+          </picture>
+        </article>
+      </div>
+
+      <button class="slider-arrow next" type="button" aria-label="Next slide">›</button>
+      <div class="slider-dots" aria-label="Slider dots"></div>
+    </section>
+    <!-- ================= HERO SLIDER SECTION END ================= -->
+
+    <!-- ================= OFFER HIGHLIGHT CARDS START ================= -->
+    <section class="offer-cards section-pad">
+      <div class="offer-card"><img src="assets/icon-tag.svg" alt="" /><strong>ডিসকাউন্টে ১৮৫০ টাকার<br>২ পিস শার্ট মাত্র</strong><b>১১৯৯ টাকা</b></div>
+      <div class="offer-card"><img src="assets/icon-diamond.svg" alt="" /><strong>সাথে পাচ্ছেন</strong><b>Exclusive Design,<br>Premium Quality</b></div>
+      <div class="offer-card"><img src="assets/icon-cotton.svg" alt="" /><strong>100%</strong><b>কটন ফেব্রিক</b></div>
+      <div class="offer-card"><img src="assets/icon-delivery.svg" alt="" /><strong>সারা বাংলাদেশে</strong><b>Cash On Delivery</b></div>
+      <div class="offer-card"><img src="assets/icon-clock.svg" alt="" /><strong>স্টক সীমিত</strong><b>আজই অর্ডার করুন</b></div>
+    </section>
+    <!-- ================= OFFER HIGHLIGHT CARDS END ================= -->
+
+    <!-- ================= PRODUCT SHOWCASE GRID START ================= -->
+    <section class="showcase section-pad">
+      <article class="showcase-card">
+        <img src="assets/showcase-1.svg" alt="Tropical vibes shirt combo" />
+        <div class="showcase-content">
+          <span>TROPICAL VIBES</span>
+          <h3>বোল্ড & কালারফুল</h3>
+          <p>উজ্জ্বল ট্রপিকাল প্রিন্ট, যা এনে দেয় এনার্জি এবং স্টাইল।</p>
+        </div>
+      </article>
+
+      <article class="showcase-card">
+        <img src="assets/showcase-2.svg" alt="Classic vibes shirt combo" />
+        <div class="showcase-content">
+          <span>CLASSIC VIBES</span>
+          <h3>স্টাইলিশ & এলিগেন্ট</h3>
+          <p>স্মার্ট ফ্লোরাল প্যাটার্ন, যা দেয় টাইমলেস ও ক্লাসি লুক।</p>
+        </div>
+      </article>
+    </section>
+    <!-- ================= PRODUCT SHOWCASE GRID END ================= -->
+
+    <!-- ================= ORDER FORM / CHECKOUT SECTION START =================
+      PRICE UPDATE NOTE:
+      Main combo price and related product prices are set in script.js products array.
+      Delivery charges are set below in data-cost attributes and also handled by JS.
+    ======================================================================== -->
+    <form id="order" class="section-pad" name="galaxy-fashion-order" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="galaxy-fashion-order" />
+      <p class="hidden"><label>Don’t fill this out: <input name="bot-field" /></label></p>
+
+      <!-- Hidden fields submitted to Netlify -->
+      <input type="hidden" name="order_items" id="orderItemsInput" />
+      <input type="hidden" name="product_codes" id="productCodesInput" />
+      <input type="hidden" name="subtotal" id="subtotalInput" />
+      <input type="hidden" name="delivery_charge" id="deliveryInput" />
+      <input type="hidden" name="total_amount" id="totalInput" />
+
+      <div class="checkout">
+        <div class="checkout-left">
+        <!-- ========== YOUR PRODUCTS START ========== -->
+        <section class="panel">
+          <h2><span>1</span>Your Products</h2>
+          <div id="cartItems" class="cart-items"></div>
+        </section>
+        <!-- ========== YOUR PRODUCTS END ========== -->
+
+        <!-- ========== BILLING DETAILS START ========== -->
+        <section class="panel billing-panel">
+          <h2><span>2</span>Billing Details</h2>
+
+          <div class="form-grid simple">
+            <label>নাম *<input name="customer_name" required placeholder="আপনার নাম লিখুন" /></label>
+            <label>ঠিকানা *<input name="address" required placeholder="আপনার পূর্ণ ঠিকানা লিখুন" /></label>
+            <label>মোবাইল নাম্বার *<input name="phone" required pattern="^(?:\+?88)?01[3-9]\d{8}$" placeholder="মোবাইল নাম্বার লিখুন" /></label>
+          </div>
+
+          <fieldset class="size-box">
+            <legend>Size *</legend>
+            <label><input type="radio" name="size" value="M - Length 27, Chest 40" required /> M - Length 27, Chest 40</label>
+            <label><input type="radio" name="size" value="L - Length 28, Chest 42" /> L - Length 28, Chest 42</label>
+            <label><input type="radio" name="size" value="XL - Length 29, Chest 44" /> XL - Length 29, Chest 44</label>
+            <label><input type="radio" name="size" value="XXL - Length 30, Chest 46" /> XXL - Length 30, Chest 46</label>
+          </fieldset>
+
+          <label class="note-label">Order notes (optional)<textarea name="order_note" placeholder="Notes about your order, e.g. special notes for delivery."></textarea></label>
+        </section>
+        <!-- ========== BILLING DETAILS END ========== -->
+      </div>
+
+      <!-- ========== ORDER SUMMARY START ========== -->
+      <aside class="checkout-right panel">
+        <h2><span>3</span>Your Order</h2>
+
+        <div class="summary-head"><strong>Product</strong><strong>Subtotal</strong></div>
+        <div id="summaryItems" class="summary-items"></div>
+
+        <div class="summary-row"><b>Subtotal</b><b id="subtotalText">৳ 0</b></div>
+
+        <div class="shipment-row">
+          <span>Shipment</span>
+          <fieldset class="shipment-box">
+            <!-- Delivery price: Dhaka inside = 70 taka -->
+            <label><input type="radio" name="shipment" value="inside_dhaka" data-cost="70" required /> ঢাকার ভিতরে:<br><b>৳ 70.00</b></label>
+            <!-- Delivery price: Dhaka outside = 140 taka -->
+            <label><input type="radio" name="shipment" value="outside_dhaka" data-cost="140" /> ঢাকার বাইরে:<br><b>৳ 140.00</b></label>
+          </fieldset>
+        </div>
+
+        <div class="summary-total"><b>Total</b><strong id="totalText">৳ 0</strong></div>
+
+        <div class="delivery-note">
+          <img src="assets/icon-delivery.svg" alt="" />
+          <div>
+            <h3>ক্যাশ অন ডেলিভারি</h3>
+            <p>ঢাকার ভিতরে ১-২ দিন এবং ঢাকার বাইরে ৩-৪ দিনের ভিতরে প্রোডাক্ট ডেলিভারি হবে। আপনার মোবাইলে COURIER থেকে মেসেজ যাবে, বিকাশের মাধ্যমে আপডেট দেখতে পারবেন।</p>
+          </div>
+        </div>
+      </aside>
+      </div>
+      <!-- ========== ORDER SUMMARY END ========== -->
+
+      <div class="order-button-wrap">
+        <button class="place-order" type="submit"><img src="assets/icon-lock.svg" alt="" /> Place Order <span id="buttonTotal">৳ 0</span></button>
+      </div>
+    </form>
+    <!-- ================= ORDER FORM / CHECKOUT SECTION END ================= -->
+
+    <!-- ================= RELATED PRODUCTS START ================= -->
+    <section class="related section-pad">
+      <h2>You May Also Like</h2>
+      <div class="product-row" id="relatedProducts"></div>
+    </section>
+    <!-- ================= RELATED PRODUCTS END ================= -->
+
+    <!-- ================= WHY CHOOSE US START ================= -->
+    <section class="why section-pad">
+      <div><img src="assets/icon-quality.svg" alt="" /><b>Premium Quality</b><span>Best fabric & stitching</span></div>
+      <div><img src="assets/icon-price.svg" alt="" /><b>Affordable Price</b><span>Best value for money</span></div>
+      <div><img src="assets/icon-delivery.svg" alt="" /><b>Fast Delivery</b><span>2-4 working days</span></div>
+      <div><img src="assets/icon-return.svg" alt="" /><b>Easy Returns</b><span>7 days return policy</span></div>
+      <div><img src="assets/icon-secure.svg" alt="" /><b>100% Secure</b><span>Safe & secure shopping</span></div>
+    </section>
+    <!-- ================= WHY CHOOSE US END ================= -->
+  </main>
+
+  <!-- ================= FOOTER SECTION START ================= -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>
+        <h2>GALAXY<span>FASHION</span>BD</h2>
+        <p>We provide premium quality shirts for your everyday style. Stay stylish, stay confident.</p>
+        <div class="socials">
+          <a href="#"><img src="assets/icon-facebook.svg" alt="Facebook" /></a>
+          <a href="#"><img src="assets/icon-instagram.svg" alt="Instagram" /></a>
+          <a href="#"><img src="assets/icon-tiktok.svg" alt="TikTok" /></a>
+          <a href="#"><img src="assets/icon-youtube.svg" alt="YouTube" /></a>
+        </div>
+      </div>
+
+      <div>
+        <h3>Contact Us</h3>
+        <p><img src="assets/icon-phone.svg" alt="" /> +880 1234-567890</p>
+        <p><img src="assets/icon-email.svg" alt="" /> support@galaxyfashionbd.com</p>
+        <p><img src="assets/icon-location.svg" alt="" /> Dhaka, Bangladesh</p>
+      </div>
+    </div>
+  </footer>
+  <!-- ================= FOOTER SECTION END ================= -->
+
+  <!-- ================= FLOATING CONTACT BUTTON START ================= -->
+  <div class="fab collapsed" id="fab">
+    <a class="fab-action" href="tel:+8801234567890"><img src="assets/icon-phone.svg" alt="Call" /></a>
+    <a class="fab-action" href="https://wa.me/8801234567890?text=আমি%20এই%20প্রোডাক্টটি%20সম্পর্কে%20জানতে%20চাই" target="_blank" rel="noopener"><img src="assets/icon-whatsapp.svg" alt="WhatsApp" /></a>
+    <button class="fab-main" type="button" aria-label="Open contact buttons"><span>+</span></button>
+  </div>
+  <!-- ================= FLOATING CONTACT BUTTON END ================= -->
+
+  <!-- ================= PRODUCT LIGHTBOX START ================= -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lightbox-close" type="button" aria-label="Close lightbox">×</button>
+    <div class="lightbox-content">
+      <button class="lightbox-arrow lb-prev" type="button" aria-label="Previous image">‹</button>
+      <img id="lightboxImage" alt="Product preview" />
+      <button class="lightbox-arrow lb-next" type="button" aria-label="Next image">›</button>
+    </div>
+    <div class="lightbox-thumbs" id="lightboxThumbs"></div>
+  </div>
+  <!-- ================= PRODUCT LIGHTBOX END ================= -->
+
+  <script src="script.js"></script>
+</body>
+</html>
