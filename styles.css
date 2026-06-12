@@ -210,7 +210,10 @@ textarea {
    font-size: 44px;
    line-height: 1;
    cursor: pointer;
-   box-shadow: var(--shadow-md)
+   box-shadow: var(--shadow-md);
+   display: flex;
+   justify-content: center;
+   align-items: center;
 }
 .slider-arrow img{
    height: 30px;
