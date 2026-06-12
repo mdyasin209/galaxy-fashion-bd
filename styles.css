@@ -136,8 +136,8 @@ textarea {
 }
 
 .header-trust img {
-   width: 18px;
-   height: 18px;
+   width: 24px;
+   height: 24px;
    object-fit: contain
 }
 
@@ -152,8 +152,8 @@ textarea {
 }
 
 .header-btn img {
-   width: 16px;
-   height: 16px
+   width: 20px;
+   height: 20px
 }
 
 /* ================= HEADER SECTION END ================= */
@@ -838,8 +838,8 @@ textarea {
 }
 
 .socials img {
-   width: 18px;
-   height: 18px
+   width: 24px;
+   height: 24px
 }
 
 /* ================= FOOTER SECTION END ================= */
@@ -1180,6 +1180,9 @@ textarea {
       width: 52px;
       height: 52px
    }
+   .fab-action img {
+   width: 30px;
+}
 
    .lightbox {
       padding: 18px
