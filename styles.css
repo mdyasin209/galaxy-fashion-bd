@@ -212,6 +212,9 @@ textarea {
    cursor: pointer;
    box-shadow: var(--shadow-md)
 }
+.slider-arrow img{
+   height: 30px;
+}
 
 .slider-arrow.prev {
    left: 22px
