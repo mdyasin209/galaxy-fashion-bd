@@ -61,7 +61,6 @@ exports.handler = async function (event) {
   }
 };*/
 
-
 const BASE_ID = process.env.AIRTABLE_BASE_ID;
 const TOKEN = process.env.AIRTABLE_TOKEN;
 const ORDERS_TABLE = "Orders";
@@ -79,6 +78,7 @@ exports.handler = async function (event) {
   try {
     const body = JSON.parse(event.body || "{}");
 
+    console.log("EVENT BODY:", event.body);
     console.log("NETLIFY WEBHOOK BODY:", JSON.stringify(body));
 
     const data =
@@ -122,6 +122,7 @@ exports.handler = async function (event) {
 
     const responseText = await res.text();
 
+    console.log("AIRTABLE STATUS:", res.status);
     console.log("AIRTABLE RESPONSE:", responseText);
 
     if (!res.ok) {
@@ -137,7 +138,10 @@ exports.handler = async function (event) {
 
     return {
       statusCode: 500,
-      body: JSON.stringify({ success: false, error: error.message })
+      body: JSON.stringify({
+        success: false,
+        error: error.message
+      })
     };
   }
 };
