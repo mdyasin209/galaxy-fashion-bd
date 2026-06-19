@@ -3,8 +3,17 @@ const TOKEN = process.env.AIRTABLE_TOKEN;
 const ORDERS_TABLE = "Orders";
 
 exports.handler = async function (event) {
+  if (event.httpMethod !== "POST") {
+    return {
+      statusCode: 200,
+      body: JSON.stringify({
+        message: "save-order function is working. Waiting for Netlify form POST."
+      })
+    };
+  }
+
   try {
-    const payload = JSON.parse(event.body);
+    const payload = JSON.parse(event.body || "{}");
     const data = payload.data || payload;
 
     const fields = {
@@ -34,14 +43,15 @@ exports.handler = async function (event) {
       }
     );
 
+    const responseText = await res.text();
+
     if (!res.ok) {
-      const error = await res.text();
-      throw new Error(error);
+      throw new Error(responseText);
     }
 
     return {
       statusCode: 200,
-      body: JSON.stringify({ success: true })
+      body: JSON.stringify({ success: true, airtable: responseText })
     };
   } catch (error) {
     return {
