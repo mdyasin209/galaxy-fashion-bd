@@ -193,7 +193,7 @@ textarea {
 }
 
 .hero-slide img {
-   object-fit: cover
+   object-fit: contain;
 }
 
 .slider-arrow {
