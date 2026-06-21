@@ -939,7 +939,8 @@ textarea {
    width: 40vw;
    border-radius: 16px;
    background: #fff;
-   box-shadow: 0 20px 70px rgba(0, 0, 0, .35)
+   box-shadow: 0 20px 70px rgba(0, 0, 0, .35);
+   object-fit: contain;
 }
 
 .lightbox-close,
