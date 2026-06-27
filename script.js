@@ -321,3 +321,129 @@ function renderAll() {
 }
 
 loadSiteData();
+
+
+
+
+
+
+
+/* ================= META PIXEL TRACKING START ================= */
+
+function gfbdNumber(value) {
+  if (!value) return 0;
+  return Number(String(value).replace(/[^\d.]/g, "")) || 0;
+}
+
+function gfbdGetPixelData() {
+  const totalInput = document.querySelector("#totalInput");
+  const subtotalInput = document.querySelector("#subtotalInput");
+  const deliveryInput = document.querySelector("#deliveryInput");
+  const productCodesInput = document.querySelector("#productCodesInput");
+  const orderItemsInput = document.querySelector("#orderItemsInput");
+
+  const total = gfbdNumber(totalInput?.value);
+  const subtotal = gfbdNumber(subtotalInput?.value);
+  const delivery = gfbdNumber(deliveryInput?.value);
+
+  const productCodes = productCodesInput?.value
+    ? productCodesInput.value.split(",").map(code => code.trim()).filter(Boolean)
+    : ["galaxy-fashion-product"];
+
+  return {
+    value: total || subtotal || 0,
+    currency: "BDT",
+    content_name: "Galaxy Fashion BD Order",
+    content_ids: productCodes,
+    content_type: "product",
+    contents: productCodes.map(code => ({
+      id: code,
+      quantity: 1
+    })),
+    num_items: productCodes.length || 1,
+    subtotal: subtotal,
+    delivery_charge: delivery,
+    order_items: orderItemsInput?.value || ""
+  };
+}
+
+function gfbdTrack(eventName, data) {
+  if (typeof fbq === "function") {
+    fbq("track", eventName, data || gfbdGetPixelData());
+  }
+}
+
+function gfbdTrackCustom(eventName, data) {
+  if (typeof fbq === "function") {
+    fbq("trackCustom", eventName, data || gfbdGetPixelData());
+  }
+}
+
+/* Airtable product data render/update howar por ViewContent fire korbe */
+(function trackViewContentAfterDataLoad() {
+  let attempts = 0;
+
+  const timer = setInterval(function () {
+    const data = gfbdGetPixelData();
+    attempts++;
+
+    if (data.value > 0 || data.content_ids[0] !== "galaxy-fashion-product" || attempts >= 20) {
+      gfbdTrack("ViewContent", data);
+      clearInterval(timer);
+    }
+  }, 300);
+})();
+
+/* Header Order Now click */
+const headerOrderBtn = document.querySelector(".header-btn");
+
+if (headerOrderBtn) {
+  headerOrderBtn.addEventListener("click", function () {
+    gfbdTrackCustom("OrderNowClick");
+  });
+}
+
+/* User form fill start korle InitiateCheckout */
+let gfbdCheckoutStarted = false;
+const orderForm = document.querySelector("#order");
+
+if (orderForm) {
+  function startCheckoutOnce() {
+    if (!gfbdCheckoutStarted) {
+      gfbdTrack("InitiateCheckout");
+      gfbdCheckoutStarted = true;
+    }
+  }
+
+  orderForm.addEventListener("input", startCheckoutOnce);
+  orderForm.addEventListener("change", startCheckoutOnce);
+
+  /* Form submit korle data save kore thank-you page e pathabe */
+  orderForm.addEventListener("submit", function () {
+    const pixelData = gfbdGetPixelData();
+
+    sessionStorage.setItem("gfbd_pixel_order_data", JSON.stringify(pixelData));
+
+    gfbdTrack("Lead", pixelData);
+  });
+}
+
+/* WhatsApp click */
+const whatsappBtn = document.querySelector('a[href*="wa.me"]');
+
+if (whatsappBtn) {
+  whatsappBtn.addEventListener("click", function () {
+    gfbdTrackCustom("WhatsAppClick");
+  });
+}
+
+/* Phone call click */
+const phoneBtn = document.querySelector('a[href^="tel:"]');
+
+if (phoneBtn) {
+  phoneBtn.addEventListener("click", function () {
+    gfbdTrackCustom("PhoneCallClick");
+  });
+}
+
+/* ================= META PIXEL TRACKING END ================= */
