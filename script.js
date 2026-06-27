@@ -418,14 +418,30 @@ if (orderForm) {
   orderForm.addEventListener("input", startCheckoutOnce);
   orderForm.addEventListener("change", startCheckoutOnce);
 
-  /* Form submit korle data save kore thank-you page e pathabe */
+  /* Form submit korle data save kore thank-you page e pathabe *//*
   orderForm.addEventListener("submit", function () {
     const pixelData = gfbdGetPixelData();
 
     sessionStorage.setItem("gfbd_pixel_order_data", JSON.stringify(pixelData));
 
     gfbdTrack("Lead", pixelData);
-  });
+  });*/
+  //eta testing purpose ----start code
+  orderForm.addEventListener("submit", function (event) {
+  if (
+    event.defaultPrevented ||
+    !document.querySelector('input[name="shipment"]:checked')
+  ) {
+    return;
+  }
+
+  const pixelData = gfbdGetPixelData();
+
+  sessionStorage.setItem("gfbd_pixel_order_data", JSON.stringify(pixelData));
+
+  gfbdTrack("Lead", pixelData);
+});
+//end code
 }
 
 /* WhatsApp click */
