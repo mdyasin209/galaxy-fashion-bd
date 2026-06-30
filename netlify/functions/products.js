@@ -50,7 +50,8 @@ exports.handler = async function () {
         id: "combo",
         code: main["Product Code"] || "",
         name: main["Product Name"] || "",
-        desc: "2 Premium Shirts",
+        desc: main["Product Description"] || "",
+        //desc: "2 Premium Shirts",
         price: Number(main["Price"] || 0),
         img: getAttachmentUrl(main["Product Image"]),
         gallery: [
